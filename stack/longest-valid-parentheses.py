@@ -1,28 +1,30 @@
 #! /home/polymath/.pyenv/shims/python
 
-from typing import Coroutine
-
 
 class Solution:
-    def longestValidParentheses(self, s: str) -> int:
-        currTotal = lastTotal = 0
-        left, right = '(', ')'
+
+    def isValid(self, s:str) -> bool:
+        left = '('
         stack = []
-
-        for item in s:
-            if item is left:
-                stack.append(item)
+        for i in s:
+            if i is left:
+                stack.append(i)
+            elif stack and (stack[-1] is left):
+                stack.pop()
             else:
-                if not stack:
-                    if currTotal > lastTotal:
-                        lastTotal = currTotal
-                    currTotal = 0
-                else:
-                    stack.pop()
-                    currTotal += 2
+                return False
+        return not bool(stack)
 
-        return lastTotal if lastTotal > currTotal else currTotal
+
+    def longestValidParentheses(self, s: str) -> int:
+        maxlen = 0
+        length = len(s)
+        for i in range(0,length):
+            for j in range(i+2, length+1, 2):
+                if (self.isValid(s[i:j])):
+                    maxlen = max(maxlen, j-i)
                 
+        return maxlen
 
 parentheses = Solution()
 print(parentheses.longestValidParentheses("(()))"))
