@@ -3,28 +3,22 @@
 
 class Solution:
 
-    def isValid(self, s:str) -> bool:
-        left = '('
-        stack = []
-        for i in s:
-            if i is left:
-                stack.append(i)
-            elif stack and (stack[-1] is left):
-                stack.pop()
-            else:
-                return False
-        return not bool(stack)
-
-
     def longestValidParentheses(self, s: str) -> int:
-        maxlen = 0
+        stack = [-1]
+        maxim = 0
         length = len(s)
-        for i in range(0,length):
-            for j in range(i+2, length+1, 2):
-                if (self.isValid(s[i:j])):
-                    maxlen = max(maxlen, j-i)
-                
-        return maxlen
+        for i in range(length):
+            if s[i] is '(':
+                stack.append(i)
+            else:
+                stack.pop()
+                if (stack):
+                    maxim = max(maxim, i-stack[-1])
+                else:
+                    stack.append(i)
+
+        return maxim
+
 
 parentheses = Solution()
 print(parentheses.longestValidParentheses("(()))"))
