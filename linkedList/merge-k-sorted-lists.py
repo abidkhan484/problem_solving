@@ -1,6 +1,7 @@
 #! /home/polymath/.pyenv/shims/python
 
 from typing import Optional
+import time
 
 # Definition for singly-linked list.
 class ListNode:
@@ -27,22 +28,18 @@ class Solution:
         finalHead = ListNode()
         head = finalHead
 
-        p = len(lists); mapping = [0] * p
-        i = -10**4
-        while i <= 10**4:
-            for m in range(p):
-                if mapping[m]:
-                    continue
-                while lists[m] and lists[m].val == i:
-                    head.next = lists[m]
-                    lists[m] = lists[m].next
-                    head = head.next
-                if not lists[m]:
-                    mapping[m] = 1
-
-            if all(mapping):
-                break
-            i += 1
+        length = len(lists)
+        while any(lists):
+            minimum = 1000001
+            for i in range(length):
+                # print(lists[i])
+                if lists[i] and minimum > lists[i].val:
+                    minimum = lists[i].val
+                    idx = i
+            
+            head.next = lists[idx]
+            head = head.next
+            lists[idx] = lists[idx].next
 
         return finalHead.next
 
