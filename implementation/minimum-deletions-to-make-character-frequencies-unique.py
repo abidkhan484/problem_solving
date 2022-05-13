@@ -28,43 +28,6 @@ class Solution:
                         values.append(value)
                     break
         return deleted_char_count
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # if length <= 1:
-        #     return 0
-        # for i in range(length-1):
-        #     value = values[i]
-        #     if value not in values:
-        #         continue
-        #     occuerences = values.count(value)
-        #     k = i + occuerences - 1
-        #     for j in range(k, length):
-        #         pass
-
-
-
 
 string = input().strip()
 s = Solution()
