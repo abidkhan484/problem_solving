@@ -9,7 +9,7 @@ path = os.path.join(my_path, input_file)
 
 maximum = -1
 current = 0
-for line in fileinput.input(files=[input_file]):
+for line in fileinput.input(files=[path]):
   if line == '\n':
     maximum = max(current, maximum)
     current = 0
