@@ -19,13 +19,8 @@ class Solution:
             total += digit
 
         beautiful_number += (10 ** (length - i))
-        print(beautiful_number, n)
         return beautiful_number - n
 
 s = Solution()
-# d = s.makeIntegerBeautiful(16, 6)
-d = s.makeIntegerBeautiful(1, 1)
+d = s.makeIntegerBeautiful(16, 6)
 print(d)
-
-# 1 + 6
-# 199 2, 1100009 2
